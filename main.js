@@ -64,13 +64,26 @@ function agregarPersona() {
 
         alert(`Nombre: ${nuevaPersona.nombre}\nAltura: ${nuevaPersona.altura} metros\nPeso: ${nuevaPersona.peso} kilogramos\nIMC: ${nuevaPersona.calcularIMC().toFixed(2)}`);
 
-        var respuesta = prompt("¿Deseas agregar otra persona? (si/no)").toLowerCase();
+        var respuesta;
+        do {
+            respuesta = prompt("¿Deseas agregar otra persona? (si/no)").toLowerCase();
+            if (respuesta !== "si" && respuesta !== "no" && respuesta !== "sí") {
+                alert("Solo está permitido ingresar 'si' o 'no'. Por favor, inténtelo de nuevo.");
+            }
+        } while (respuesta !== "si" && respuesta !== "no" && respuesta !== "sí");
+        
 
     } while (respuesta === "si" && personas.length < 3);
 
     
-    let deseaCalcularCalorias = prompt("¿Deseas saber cuántas calorías deberías comer por día? (si/no)").toLowerCase();
-
+    let deseaCalcularCalorias;
+    do {
+        deseaCalcularCalorias = prompt("¿Deseas saber cuántas calorías deberías comer por día? (si/no)").toLowerCase();
+        if (deseaCalcularCalorias !== "si" && deseaCalcularCalorias !== "no") {
+            alert("Solo está permitido ingresar 'si' o 'no'. Por favor, inténtelo de nuevo.");
+        }
+    } while (deseaCalcularCalorias !== "si" && deseaCalcularCalorias !== "no");
+    
     if (deseaCalcularCalorias === "si") {
         calcularCalorias();
     }
@@ -130,11 +143,16 @@ function calcularCalorias() {
             alert(`De acuerdo a su edad y género, debería consumir aproximadamente ${formulaCalorias.toFixed(2)} calorías por día.`);
         }
 
-        
-        var deseaCalcularCalorias = prompt("¿Deseas saber cuántas calorías deberías comer por día? (si/no)").toLowerCase();
+        var deseaCalcularCalorias;
+        do {
+            deseaCalcularCalorias = prompt("¿Deseas saber cuántas calorías deberías comer por día? (si/no)").toLowerCase();
+            if (deseaCalcularCalorias !== "si" && deseaCalcularCalorias !== "no") {
+                alert("Solo está permitido ingresar 'si' o 'no'. Por favor, inténtelo de nuevo.");
+            }
+        } while (deseaCalcularCalorias !== "si" && deseaCalcularCalorias !== "no");
+
     } while (deseaCalcularCalorias === "si");
 }
-
 
 mostrarBienvenida();
 solicitarDatosAdicionales();
