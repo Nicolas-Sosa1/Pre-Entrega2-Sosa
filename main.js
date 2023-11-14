@@ -8,7 +8,22 @@ class Persona {
     calcularIMC() {
         return this.peso / (this.altura * this.altura);
     }
+
+    clasificarIMC() {
+        const imc = this.calcularIMC();
+        if (imc < 18.5) {
+            return "Bajo peso";
+        } else if (imc >= 18.5 && imc <= 24.9) {
+            return "Peso saludable";
+        } else if (imc >= 25.0 && imc <= 29.9) {
+            return "Sobrepeso";
+        } else {
+            return "Obesidad";
+        }
+    }
 }
+
+
 
 let personas = [];
 
@@ -62,7 +77,10 @@ function agregarPersona() {
         let nuevaPersona = new Persona(nombre, peso, altura);
         personas.push(nuevaPersona);
 
-        alert(`Nombre: ${nuevaPersona.nombre}\nAltura: ${nuevaPersona.altura} metros\nPeso: ${nuevaPersona.peso} kilogramos\nIMC: ${nuevaPersona.calcularIMC().toFixed(2)}`);
+        const imc = nuevaPersona.calcularIMC();
+        const clasificacionIMC = nuevaPersona.clasificarIMC();
+
+        alert(`Nombre: ${nuevaPersona.nombre}\nAltura: ${nuevaPersona.altura} metros\nPeso: ${nuevaPersona.peso} kilogramos\nIMC: ${imc.toFixed(2)}\nClasificación IMC: ${clasificacionIMC}`);
 
         var respuesta;
         do {
@@ -71,11 +89,9 @@ function agregarPersona() {
                 alert("Solo está permitido ingresar 'si' o 'no'. Por favor, inténtelo de nuevo.");
             }
         } while (respuesta !== "si" && respuesta !== "no" && respuesta !== "sí");
-        
 
     } while (respuesta === "si" && personas.length < 3);
 
-    
     let deseaCalcularCalorias;
     do {
         deseaCalcularCalorias = prompt("¿Deseas saber cuántas calorías deberías comer por día? (si/no)").toLowerCase();
@@ -83,7 +99,7 @@ function agregarPersona() {
             alert("Solo está permitido ingresar 'si' o 'no'. Por favor, inténtelo de nuevo.");
         }
     } while (deseaCalcularCalorias !== "si" && deseaCalcularCalorias !== "no");
-    
+
     if (deseaCalcularCalorias === "si") {
         calcularCalorias();
     }
@@ -145,7 +161,7 @@ function calcularCalorias() {
 
         var deseaCalcularCalorias;
         do {
-            deseaCalcularCalorias = prompt("¿Deseas saber cuántas calorías deberías comer por día? (si/no)").toLowerCase();
+            deseaCalcularCalorias = prompt("¿Deseas volver a ver cuántas calorías deberías comer por día? (si/no)").toLowerCase();
             if (deseaCalcularCalorias !== "si" && deseaCalcularCalorias !== "no") {
                 alert("Solo está permitido ingresar 'si' o 'no'. Por favor, inténtelo de nuevo.");
             }
